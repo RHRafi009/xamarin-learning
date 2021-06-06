@@ -9,8 +9,12 @@
             <Label Text="Welcome to Hello Person!!" HorizontalTextAlignment="Center" TextColor="White" FontSize="36"/>
         </Frame>
         <Label Text="Your name, please?" TextColor="#2196F3" FontSize="Title"/>
-        <Entry Placeholder="Type you name here" />
+        <Entry x:Name="nameEntry" Placeholder="Type you name here" />
         <Button Text="Say Hello" TextTransform="None" Clicked="SayHello_Clicked" TextColor="White" CornerRadius="10" BackgroundColor="#2196F3" FontSize="Medium"/>
+        <!-- Output section -->
+        <Frame x:Name="outputFrame" BackgroundColor="#2196F3" CornerRadius="10" IsVisible="False" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand">
+            <Label x:Name="outputLabel" HorizontalTextAlignment="Center" TextColor="White" FontSize="30" />
+        </Frame>
     </StackLayout>
 
 </ContentPage>

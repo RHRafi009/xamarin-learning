@@ -1,9 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Xamarin.Forms;
 
 namespace HelloWorld
@@ -17,7 +12,10 @@ namespace HelloWorld
 
         private void SayHello_Clicked(object sender, EventArgs e)
         {
-
+            string personName = nameEntry.Text;
+            string outputRes = $"Hello {personName}!!";
+            outputLabel.Text = outputRes;
+            outputFrame.IsVisible = true;
         }
     }
 }
