@@ -10,11 +10,15 @@
         </Frame>
         <Label Text="Your name, please?" TextColor="#2196F3" FontSize="Title"/>
         <Entry x:Name="nameEntry" Placeholder="Type you name here" />
-        <Button Text="Say Hello" TextTransform="None" Clicked="SayHello_Clicked" TextColor="White" CornerRadius="10" BackgroundColor="#2196F3" FontSize="Medium"/>
+        <Button Text="Say Hello" TextTransform="None" Clicked="SayHello_Clicked" TextColor="White" CornerRadius="10" 
+                BackgroundColor="#2196F3" FontSize="Medium"/>
         <!-- Output section -->
-        <Frame x:Name="outputFrame" BackgroundColor="#2196F3" CornerRadius="10" IsVisible="False" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand">
+        <Frame x:Name="outputFrame" BackgroundColor="#2196F3" CornerRadius="10" IsVisible="False" HorizontalOptions="FillAndExpand" 
+               VerticalOptions="CenterAndExpand" Padding="0,40">
             <Label x:Name="outputLabel" HorizontalTextAlignment="Center" TextColor="White" FontSize="30" />
         </Frame>
+        <Button x:Name="resetButton" Text="Reset" TextTransform="None" TextColor="Black" BackgroundColor="PaleVioletRed" 
+                CornerRadius="10" FontSize="Medium" IsVisible="False" Clicked="Reset_clicked" />
     </StackLayout>
 
 </ContentPage>
