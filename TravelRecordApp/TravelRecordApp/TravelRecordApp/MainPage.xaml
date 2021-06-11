@@ -3,8 +3,19 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="TravelRecordApp.MainPage">
 
-    <StackLayout>
-        
+    <StackLayout VerticalOptions="Center"
+                 Margin="20,0"> <!-- for 1 value it will apply to all the sites, for 2 value first one is for left right and second one for top and end, for 4 value it will for all four sites. -->
+        <Entry Placeholder="Email" 
+               Keyboard="Email"/>
+        <Entry Placeholder="Password"
+               IsPassword="True"/>
+        <Button x:Name="LoginButtton" 
+                Text="Log in" 
+                Clicked="Login_Clicked"
+                TextTransform="None"
+                BackgroundColor="DodgerBlue"
+                TextColor="White"
+                Margin="0,30,0,0"/>
     </StackLayout>
 
 </ContentPage>
