@@ -13,7 +13,9 @@ namespace HelloWorld
         private void SayHello_Clicked(object sender, EventArgs e)
         {
             string personName = nameEntry.Text;
-            string outputRes = $"Hello {personName ?? "Stranger"} !!";
+            if (personName == null || personName == string.Empty)
+                personName = "Stranger";
+            string outputRes = $"Hello {personName} !!";
             outputLabel.Text = outputRes;
             outputFrame.IsVisible = true;
             resetButton.IsVisible = true;
