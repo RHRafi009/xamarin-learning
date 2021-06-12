@@ -5,9 +5,11 @@
 
     <StackLayout VerticalOptions="Center"
                  Margin="20,0"> <!-- for 1 value it will apply to all the sites, for 2 value first one is for left right and second one for top and end, for 4 value it will for all four sites. -->
-        <Entry Placeholder="Email" 
+        <Entry x:Name="EmailEntry"
+               Placeholder="Email" 
                Keyboard="Email"/>
-        <Entry Placeholder="Password"
+        <Entry x:Name="PasswordEntry"
+               Placeholder="Password"
                IsPassword="True"/>
         <Button x:Name="LoginButtton" 
                 Text="Log in" 
