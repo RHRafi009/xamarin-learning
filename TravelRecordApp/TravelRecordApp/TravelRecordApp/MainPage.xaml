@@ -24,9 +24,6 @@
         <Button x:Name="LoginButtton" 
                 Text="Log in" 
                 Clicked="Login_Clicked"
-                TextTransform="None"
-                BackgroundColor="{StaticResource blueColor}"
-                TextColor="White"
                 Margin="0,30,0,0"/>
     </StackLayout>
 

@@ -5,6 +5,18 @@
     <Application.Resources>
         <ResourceDictionary>
             <Color x:Key="blueColor">#1E90FF</Color>
+            <Color x:Key="white">#FFFFFF</Color>
+            <!-- style is applied on buttons, text or any element -->
+            <Style TargetType="Button"> <!-- this style for button -->
+                <Setter Property="BackgroundColor" Value="{StaticResource blueColor}"/>
+                <Setter Property="TextColor" Value="{StaticResource white}"/>
+                <Setter Property="TextTransform" Value="None"/>
+            </Style>
+            <!--
+                => for implicit type of style, no need to define a name for the style. it will automatically apply for all the elements according to the 
+                style targerType.
+                => if you define a preperty value in the actual element, it will be executed over the generic style rules.
+            -->
         </ResourceDictionary>
     </Application.Resources>
 </Application>
