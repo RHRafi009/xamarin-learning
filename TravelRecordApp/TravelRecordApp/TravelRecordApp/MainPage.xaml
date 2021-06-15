@@ -3,11 +3,21 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="TravelRecordApp.MainPage">
 
+    <!-- Best way to declare resources is in App.xml as we want to use this resources thouthout the application not just in the single page. -->
+    <!--
+        <ContentPage.Resources>
+            <ResourceDictionary>
+                <Color x:Key="blueColor">#1E90FF</Color>
+            </ResourceDictionary>
+        </ContentPage.Resources>
+    -->
+
     <StackLayout VerticalOptions="Center"
                  Margin="20,0"> <!-- for 1 value it will apply to all the sites, for 2 value first one is for left right and second one for top and end, for 4 value it will for all four sites. -->
         <Entry x:Name="EmailEntry"
                Placeholder="Email" 
-               Keyboard="Email"/>
+               Keyboard="Email"
+               TextColor="{StaticResource blueColor}"/> <!-- use of resource defined in resource dictionary -->
         <Entry x:Name="PasswordEntry"
                Placeholder="Password"
                IsPassword="True"/>
@@ -15,7 +25,7 @@
                 Text="Log in" 
                 Clicked="Login_Clicked"
                 TextTransform="None"
-                BackgroundColor="DodgerBlue"
+                BackgroundColor="{StaticResource blueColor}"
                 TextColor="White"
                 Margin="0,30,0,0"/>
     </StackLayout>
