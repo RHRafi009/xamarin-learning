@@ -4,7 +4,10 @@
              x:Class="TravelRecordApp.HistoryPage">
     <ContentPage.Content>
         <StackLayout>
-            <Label>History page</Label>
+            <Label
+                Style="{StaticResource header}"> <!-- use of explicit style -->
+                History page
+            </Label>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

@@ -17,6 +17,15 @@
                 style targerType.
                 => if you define a preperty value in the actual element, it will be executed over the generic style rules.
             -->
+
+            <Style TargetType="Label">
+                <Setter Property="TextColor" Value="Black"/>
+            </Style>
+            <!-- defining explicit style -->
+            <Style x:Key="header" TargetType="Label">
+                <Setter Property="TextColor" Value="{StaticResource blueColor}"/>
+                <Setter Property="FontSize" Value="Header"/>
+            </Style>
         </ResourceDictionary>
     </Application.Resources>
 </Application>
