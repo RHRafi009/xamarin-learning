@@ -30,5 +30,14 @@ namespace TravelRecordApp
                 expListView.ItemsSource = posts;
             }
         }
+
+        private void Exp_Selected(object sender, SelectedItemChangedEventArgs e)
+        {
+            Post selected = expListView.SelectedItem as Post;
+            if(selected != null)
+            {
+                Navigation.PushAsync(new DetailsPage(selected));
+            }
+        }
     }
 }
