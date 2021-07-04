@@ -24,7 +24,7 @@
             <!-- defining explicit style -->
             <Style x:Key="header" TargetType="Label">
                 <Setter Property="TextColor" Value="{StaticResource blueColor}"/>
-                <Setter Property="FontSize" Value="Header"/>
+                <Setter Property="FontSize" Value="Title"/>
             </Style>
         </ResourceDictionary>
     </Application.Resources>
