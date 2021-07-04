@@ -23,10 +23,12 @@ namespace TravelRecordApp
         {
             base.OnAppearing();
 
-            SQLiteConnection con = new SQLiteConnection(App.DbLocation);
-            con.CreateTable<Post>();
-            List<Post> posts = con.Table<Post>().ToList();
-            con.Close();
+            using (SQLiteConnection con = new SQLiteConnection(App.DbLocation))
+            {
+                con.CreateTable<Post>();
+                List<Post> posts = con.Table<Post>().ToList();
+                expListView.ItemsSource = posts;
+            }
         }
     }
 }
