@@ -23,6 +23,7 @@ namespace TravelRecordApp.iOS
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
             global::Xamarin.Forms.Forms.Init();
+            Xamarin.FormsMaps.Init(); // prepare the ios app to start with map.
             LoadApplication(new App());
 
             return base.FinishedLaunching(app, options);
