@@ -18,7 +18,6 @@ namespace TravelRecordApp.Droid
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
             Xamarin.FormsMaps.Init(this, savedInstanceState); // configure to use the map.
-            // AIzaSyAHr6YJBDcfC9lzuwYIbvZinqpaoTFhAq0
 
             string dbFileName = "travel_db.sqlite";
             string path = System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal);
@@ -29,7 +28,8 @@ namespace TravelRecordApp.Droid
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
         {
             Xamarin.Essentials.Platform.OnRequestPermissionsResult(requestCode, permissions, grantResults);
-
+            // even though the previous line is implemented through the plugin.permission in the lecture xamarin essentilas is doing the same shit.
+             
             base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
         }
     }
