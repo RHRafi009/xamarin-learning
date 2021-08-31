@@ -24,13 +24,14 @@ namespace TravelRecordApp
             {
                 Experience = expEntry.Text
             };
+            int row = -1;
+            using (SQLiteConnection con = new SQLiteConnection(App.DbLocation))
+            {
+                con.CreateTable<Post>();
+                row = con.Insert(post);
+            }
 
-            SQLiteConnection con = new SQLiteConnection(App.DbLocation);
-            con.CreateTable<Post>();
-            int row = con.Insert(post);
-            con.Close();
-
-            if(row == 1)
+            if (row == 1)
             {
                 DisplayAlert("Success", "Experience succesfully inserted", "OK");
             }
