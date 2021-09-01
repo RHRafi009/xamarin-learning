@@ -26,7 +26,7 @@ namespace TravelRecordApp
 
             var curLocation = CrossGeolocator.Current;
             var position = await curLocation.GetPositionAsync();
-            List<Venues> venues = await VenuesAPI.GetVenues(position.Latitude, position.Longitude);
+            List<Venue> venues = await VenuesAPI.GetVenues(position.Latitude, position.Longitude);
         }
 
         private void Save_clicked(object sender, EventArgs e)
