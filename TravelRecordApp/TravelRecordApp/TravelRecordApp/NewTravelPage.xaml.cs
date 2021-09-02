@@ -27,28 +27,43 @@ namespace TravelRecordApp
             var curLocation = CrossGeolocator.Current;
             var position = await curLocation.GetPositionAsync();
             List<Venue> venues = await VenuesAPI.GetVenues(position.Latitude, position.Longitude);
+            this.venueListView.ItemsSource = venues;
         }
 
         private void Save_clicked(object sender, EventArgs e)
         {
-            Post post = new Post()
+            try
             {
-                Experience = expEntry.Text
-            };
-            int row = -1;
-            using (SQLiteConnection con = new SQLiteConnection(App.DbLocation))
-            {
-                con.CreateTable<Post>();
-                row = con.Insert(post);
-            }
+                var selectedItem = venueListView.SelectedItem as Venue;
+                Post post = new Post()
+                {
+                    Experience = expEntry.Text,
+                    VenueId = selectedItem.id,
+                    VenueName = selectedItem.name,
+                    Address = selectedItem.location.address,
+                    Latitude = selectedItem.location.lat,
+                    Longitude = selectedItem.location.lng
+                };
+                int row = -1;
+                using (SQLiteConnection con = new SQLiteConnection(App.DbLocation))
+                {
+                    con.CreateTable<Post>();
+                    row = con.Insert(post);
+                }
 
-            if (row == 1)
-            {
-                DisplayAlert("Success", "Experience succesfully inserted", "OK");
+                if (row == 1)
+                {
+                    DisplayAlert("Success", "Experience succesfully inserted", "OK");
+                    Navigation.PushAsync(new HomePage());
+                }
+                else
+                {
+                    DisplayAlert("Falied", "Error occured", "OK");
+                }
             }
-            else
+            catch (Exception ex)
             {
-                DisplayAlert("Falied", "Error occured", "OK");
+                DisplayAlert("Falied", $"Error occured due to {ex.Message}", "OK");
             }
         }
     }
