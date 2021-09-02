@@ -11,6 +11,8 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Maps;
 using Xamarin.Forms.Xaml;
+using SQLite;
+using TravelRecordApp.Models;
 
 namespace TravelRecordApp
 {
@@ -68,6 +70,42 @@ namespace TravelRecordApp
             }
 
             SetLocation();
+
+            var posts = GetPost();
+            ShowPins(posts);
+        }
+
+        private void ShowPins(List<Post> posts)
+        {
+            foreach(var post in posts)
+            {
+                try
+                {
+                    Xamarin.Forms.Maps.Position pinPosition = new Xamarin.Forms.Maps.Position(post.Latitude, post.Longitude);
+                    Pin pin = new Pin()
+                    {
+                        Position = pinPosition,
+                        Label = post.VenueName,
+                        Address = post.Address,
+                        Type = PinType.SavedPin
+                    };
+                    locationsMap.Pins.Add(pin);
+                }
+                catch (Exception)
+                {
+                }
+            }
+        }
+
+        private List<Post> GetPost()
+        {
+            List<Post> posts = new List<Post>();
+            using (SQLiteConnection con = new SQLiteConnection(App.DbLocation))
+            {
+                con.CreateTable<Post>();
+                posts = con.Table<Post>().ToList();
+            }
+            return posts;
         }
 
         protected override void OnDisappearing()
