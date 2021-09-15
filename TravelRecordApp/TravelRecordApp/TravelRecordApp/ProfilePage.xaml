@@ -13,6 +13,15 @@
                 Text="Posts"
                 HorizontalOptions="Center"
                 TextColor="LightGray"/>
+            <ListView x:Name="CountByCategories">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <TextCell 
+                            Text="{Binding Path=Key}"
+                            Detail="{Binding Path=Value}"/>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
