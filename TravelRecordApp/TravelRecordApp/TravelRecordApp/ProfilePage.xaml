@@ -4,7 +4,15 @@
              x:Class="TravelRecordApp.ProfilePage">
     <ContentPage.Content>
         <StackLayout>
-            <Label>Profile page</Label>
+            <Label 
+                x:Name="PostCountLabel"
+                HorizontalOptions="Center"
+                FontAttributes="Bold"
+                TextColor="DodgerBlue"/>
+            <Label 
+                Text="Posts"
+                HorizontalOptions="Center"
+                TextColor="LightGray"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
