@@ -34,6 +34,7 @@ namespace TravelRecordApp.Models
         public string name { get; set; }
         public Location location { get; set; }
         public List<Category> categories { get; set; }
+        public string CategoriesName { get; set; }
     }
 
     public class Response

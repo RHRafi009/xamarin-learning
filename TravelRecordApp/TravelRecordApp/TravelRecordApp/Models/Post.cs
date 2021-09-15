@@ -17,5 +17,8 @@ namespace TravelRecordApp.Models
         public string Address { get; set; }
         public double Latitude { get; set; }
         public double Longitude { get; set; }
+        public string CategoryId { get; set; }
+        public string CategoryName { get; set; }
+
     }
 }

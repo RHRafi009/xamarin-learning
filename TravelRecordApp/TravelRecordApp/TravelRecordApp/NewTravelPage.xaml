@@ -37,7 +37,10 @@
                                        Grid.Row="0" />
                                 <Label Text="{Binding location.address}"
                                        TextColor="DodgerBlue"
-                                       Grid.ColumnSpan="2"
+                                       Grid.Row="1" />
+                                <Label Text="{Binding CategoriesName}"
+                                       TextColor="DodgerBlue"
+                                       Grid.Column="1"
                                        Grid.Row="1" />
                             </Grid>
                         </ViewCell>

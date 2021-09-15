@@ -27,6 +27,8 @@ namespace TravelRecordApp
             var curLocation = CrossGeolocator.Current;
             var position = await curLocation.GetPositionAsync();
             List<Venue> venues = await VenuesAPI.GetVenues(position.Latitude, position.Longitude);
+            foreach (var venue in venues)
+                venue.CategoriesName = venue.categories.FirstOrDefault()?.name;
             this.venueListView.ItemsSource = venues;
         }
 
@@ -42,7 +44,9 @@ namespace TravelRecordApp
                     VenueName = selectedItem.name,
                     Address = selectedItem.location.address,
                     Latitude = selectedItem.location.lat,
-                    Longitude = selectedItem.location.lng
+                    Longitude = selectedItem.location.lng,
+                    CategoryId = selectedItem.categories.FirstOrDefault()?.id,
+                    CategoryName = selectedItem.categories.FirstOrDefault()?.name
                 };
                 int row = -1;
                 using (SQLiteConnection con = new SQLiteConnection(App.DbLocation))

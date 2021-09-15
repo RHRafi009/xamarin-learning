@@ -26,6 +26,8 @@ namespace TravelRecordApp
             {
                 var posts = con.Table<Post>().ToList();
                 this.PostCountLabel.Text = posts.Count.ToString();
+
+                
             }
         }
     }
