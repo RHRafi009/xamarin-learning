@@ -66,6 +66,9 @@
     <PackageReference Include="Xam.Plugin.Geolocator">
       <Version>4.5.0.6</Version>
     </PackageReference>
+    <PackageReference Include="Xamarin.Firebase.Auth">
+      <Version>121.0.1.1</Version>
+    </PackageReference>
     <PackageReference Include="Xamarin.Forms" Version="5.0.0.2012" />
     <PackageReference Include="Xamarin.Essentials" Version="1.6.1" />
     <PackageReference Include="Xamarin.Forms.Maps">
@@ -78,6 +81,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <GoogleServicesJson Include="google-services.json" />
     <None Include="Resources\AboutResources.txt" />
     <None Include="Assets\AboutAssets.txt" />
     <None Include="Properties\AndroidManifest.xml" />
