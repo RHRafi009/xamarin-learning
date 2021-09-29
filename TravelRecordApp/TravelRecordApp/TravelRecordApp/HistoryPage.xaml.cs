@@ -8,6 +8,7 @@ using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using SQLite;
 using TravelRecordApp.Models;
+using TravelRecordApp.Helpers;
 
 namespace TravelRecordApp
 {
@@ -19,16 +20,20 @@ namespace TravelRecordApp
             InitializeComponent();
         }
 
-        protected override void OnAppearing()
+        protected async override void OnAppearing()
         {
             base.OnAppearing();
 
-            using (SQLiteConnection con = new SQLiteConnection(App.DbLocation))
+            /*using (SQLiteConnection con = new SQLiteConnection(App.DbLocation))
             {
                 con.CreateTable<Post>();
                 List<Post> posts = con.Table<Post>().ToList();
                 expListView.ItemsSource = posts;
-            }
+            }*/
+
+            expListView.ItemsSource = null;
+            var post = await Firestore.ReadAll<Post>();
+            expListView.ItemsSource = post;
         }
 
         private void Exp_Selected(object sender, SelectedItemChangedEventArgs e)

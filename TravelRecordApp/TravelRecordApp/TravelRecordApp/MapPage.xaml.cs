@@ -13,6 +13,7 @@ using Xamarin.Forms.Maps;
 using Xamarin.Forms.Xaml;
 using SQLite;
 using TravelRecordApp.Models;
+using TravelRecordApp.Helpers;
 
 namespace TravelRecordApp
 {
@@ -71,7 +72,7 @@ namespace TravelRecordApp
 
             SetLocation();
 
-            var posts = GetPost();
+            var posts = await GetPost();
             ShowPins(posts);
         }
 
@@ -97,14 +98,15 @@ namespace TravelRecordApp
             }
         }
 
-        private List<Post> GetPost()
+        private async Task<List<Post>> GetPost()
         {
-            List<Post> posts = new List<Post>();
-            using (SQLiteConnection con = new SQLiteConnection(App.DbLocation))
+            List<Post> posts = null;
+            /*using (SQLiteConnection con = new SQLiteConnection(App.DbLocation))
             {
                 con.CreateTable<Post>();
                 posts = con.Table<Post>().ToList();
-            }
+            }*/
+            posts = await Firestore.ReadAll<Post>();
             return posts;
         }
 

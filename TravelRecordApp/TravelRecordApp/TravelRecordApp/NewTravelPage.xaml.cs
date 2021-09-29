@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TravelRecordApp.API;
+using TravelRecordApp.Helpers;
 using TravelRecordApp.Models;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -32,7 +33,7 @@ namespace TravelRecordApp
             this.venueListView.ItemsSource = venues;
         }
 
-        private void Save_clicked(object sender, EventArgs e)
+        private async void Save_clicked(object sender, EventArgs e)
         {
             try
             {
@@ -48,26 +49,28 @@ namespace TravelRecordApp
                     CategoryId = selectedItem.categories.FirstOrDefault()?.id,
                     CategoryName = selectedItem.categories.FirstOrDefault()?.name
                 };
-                int row = -1;
-                using (SQLiteConnection con = new SQLiteConnection(App.DbLocation))
+                /*int row = -1;*/
+                /*using (SQLiteConnection con = new SQLiteConnection(App.DbLocation))
                 {
                     con.CreateTable<Post>();
                     row = con.Insert(post);
-                }
+                }*/
 
-                if (row == 1)
+                var result = await Firestore.Write(post);
+
+                if (result)
                 {
-                    DisplayAlert("Success", "Experience succesfully inserted", "OK");
-                    Navigation.PushAsync(new HomePage());
+                    await DisplayAlert("Success", "Experience succesfully inserted", "OK");
+                    await Navigation.PushAsync(new HomePage());
                 }
                 else
                 {
-                    DisplayAlert("Falied", "Error occured", "OK");
+                    await DisplayAlert("Falied", "Error occured", "OK");
                 }
             }
             catch (Exception ex)
             {
-                DisplayAlert("Falied", $"Error occured due to {ex.Message}", "OK");
+                await DisplayAlert("Falied", $"Error occured due to {ex.Message}", "OK");
             }
         }
     }

@@ -7,6 +7,7 @@ using TravelRecordApp.Models;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using SQLite;
+using TravelRecordApp.Helpers;
 
 namespace TravelRecordApp
 {
@@ -22,25 +23,36 @@ namespace TravelRecordApp
             expEntry.Text = Exp.Experience;
         }
 
-        private void Update_Clicked(object sender, EventArgs e)
+        private async void Update_Clicked(object sender, EventArgs e)
         {
-            using (SQLiteConnection con = new SQLiteConnection(App.DbLocation))
+            /*using (SQLiteConnection con = new SQLiteConnection(App.DbLocation))
             {
                 con.CreateTable<Post>();
                 Exp.Experience = expEntry.Text;
                 con.Update(Exp);
-            }
-            Navigation.PushAsync(new HomePage());
+            }*/
+
+            Exp.Experience = expEntry.Text;
+
+            var result = await Firestore.Update(Exp);
+            if (result)
+                await Navigation.PushAsync(new HomePage());
+            else
+                await DisplayAlert("Error", "An error has occured while updating the record.", "ok");
         }
 
-        private void Delete_Clicked(object sender, EventArgs e)
+        private async void Delete_Clicked(object sender, EventArgs e)
         {
-            using (SQLiteConnection con = new SQLiteConnection(App.DbLocation))
+            /*using (SQLiteConnection con = new SQLiteConnection(App.DbLocation))
             {
                 con.CreateTable<Post>();
                 con.Delete(Exp);
-            }
-            Navigation.PushAsync(new HomePage());
+            }*/
+            var result = await Firestore.Delete(Exp);
+            if (result)
+                await Navigation.PushAsync(new HomePage());
+            else
+                await DisplayAlert("Error", "An error has occured while deleting the record.", "ok");
         }
     }
 }

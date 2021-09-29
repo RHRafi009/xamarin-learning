@@ -48,30 +48,37 @@ namespace TravelRecordApp.Droid.Dependencies
 
         public void OnComplete(Android.Gms.Tasks.Task task)
         {
-            if (task.IsSuccessful)
+            try
             {
-                var result = (QuerySnapshot) task.Result;
-                foreach (var post in result.Documents)
+                if (task.IsSuccessful)
                 {
-                    var newPost = new Post()
+                    var result = (QuerySnapshot)task.Result;
+                    foreach (var post in result.Documents)
                     {
-                        Id = post.Id,
-                        Experience = post.Get("experience").ToString(),
-                        VenueId = post.Get("venueId").ToString(),
-                        VenueName = post.Get("venueName").ToString(),
-                        Address = post.Get("address").ToString(),
-                        Latitude = (double)post.Get("latitude"),
-                        Longitude = (double)post.Get("longitude"),
-                        CategoryId = post.Get("categoryId").ToString(),
-                        CategoryName = post.Get("categoryName").ToString(),
-                        UserId = post.Get("userId").ToString()
-                    };
-                    posts.Add(newPost);
+                        var newPost = new Post()
+                        {
+                            Id = post.Id,
+                            Experience = post.Get("experience")?.ToString(),
+                            VenueId = post.Get("venueId")?.ToString(),
+                            VenueName = post.Get("venueName")?.ToString(),
+                            Address = post.Get("address")?.ToString(),
+                            Latitude = (double)post.Get("latitude"),
+                            Longitude = (double)post.Get("longitude"),
+                            CategoryId = post.Get("categoryId")?.ToString(),
+                            CategoryName = post.Get("categoryName")?.ToString(),
+                            UserId = post.Get("userId").ToString()
+                        };
+                        posts.Add(newPost);
+                    }
+                    postRead = true;
                 }
-                postRead = true;
+                else
+                    postRead = true;
             }
-            else
-                postRead = true;
+            catch(Exception ex)
+            {
+                
+            }
         }
 
         public async Task<List<Post>> ReadAll()
@@ -148,58 +155,5 @@ namespace TravelRecordApp.Droid.Dependencies
                 return System.Threading.Tasks.Task.FromResult(false);
             }
         }
-
-
-        #region not implemented methods
-
-        public IntPtr Handle => throw new NotImplementedException();
-
-        public int JniIdentityHashCode => throw new NotImplementedException();
-
-        public JniObjectReference PeerReference => throw new NotImplementedException();
-
-        public JniPeerMembers JniPeerMembers => throw new NotImplementedException();
-
-        public JniManagedPeerStates JniManagedPeerState => throw new NotImplementedException();
-        public void Dispose()
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Disposed()
-        {
-            throw new NotImplementedException();
-        }
-
-        public void DisposeUnlessReferenced()
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Finalized()
-        {
-            throw new NotImplementedException();
-        }
-        public void SetJniIdentityHashCode(int value)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void SetJniManagedPeerState(JniManagedPeerStates value)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void SetPeerReference(JniObjectReference reference)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void UnregisterFromRuntime()
-        {
-            throw new NotImplementedException();
-        }
-        #endregion
-
     }
 }
